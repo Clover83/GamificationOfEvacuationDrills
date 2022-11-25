@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Android;
-
+using UnityEngine.UI;
 
 public class GPS : MonoBehaviour
 {
@@ -20,6 +20,25 @@ public class GPS : MonoBehaviour
    
     private int _freqValue;
     private bool _isUpdating;
+
+
+    //MAP EXTRACTION RELATED
+    private string APIKey = "AIzaSyABf9xEz9KJ1dYmU2WZE9rDBevYjTtNriw"; // !!CHRIS DONT TOUCH!! 
+
+    public RawImage img;
+
+    string url;
+    public int zoom = 14;
+    public int mapWidth = 640;
+    public int mapHeight = 640;
+
+    public int scale;
+    private bool _hasOriginCoord = false;
+    private double _originLatValue;
+    private double _originLongValue;
+
+
+
     private void Update()
     {
         if (!_isUpdating)
@@ -73,10 +92,30 @@ public class GPS : MonoBehaviour
             _latValue.text = Input.location.lastData.latitude.ToString();
             _timeValue.text = System.DateTime.UtcNow.ToLocalTime().ToString("dd-MM-yyyy   HH:mm:ss");
             _updateFreqValue.text = _freqValue.ToString();
+            if (_hasOriginCoord==false)
+            {
+                _originLatValue = Input.location.lastData.longitude;
+                _originLongValue = Input.location.lastData.latitude;
+                _hasOriginCoord = true;
+                img = gameObject.GetComponent<RawImage>();
+                StartCoroutine(MapExtractor());
+            }
         }
 
         // Stop service if there is no need to query location updates continuously
         _isUpdating = !_isUpdating;
         Input.location.Stop();
     }
+    IEnumerator MapExtractor()
+    {
+        url = "https://maps.googleapis.com/maps/api/staticmap?center=" + _originLongValue + "," + _originLatValue +
+            "&zoom=" + zoom + "&size=" + mapWidth + "x" + mapHeight + "&scale=" + scale
+            + "&maptype=roadmap" +
+            "&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=" + APIKey;
+        WWW www = new WWW(url);
+        yield return www;
+        img.texture = www.texture;
+    }
+
+
 }
