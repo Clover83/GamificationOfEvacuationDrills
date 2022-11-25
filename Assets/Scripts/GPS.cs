@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Android;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class GPS : MonoBehaviour
 {
@@ -16,23 +17,28 @@ public class GPS : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _timeValue;
     [SerializeField]
-    private TextMeshProUGUI _updateFreqValue;
-   
+    private TextMeshProUGUI _updateAmmountValue;
+
     private int _freqValue;
     private bool _isUpdating;
 
-
     //MAP EXTRACTION RELATED
-    private string APIKey = "AIzaSyABf9xEz9KJ1dYmU2WZE9rDBevYjTtNriw"; // !!CHRIS DONT TOUCH!! 
+    private string APIKey = "AIzaSyABf9xEz9KJ1dYmU2WZE9rDBevYjTtNriw"; // !!CHRIS DONT TOUCH!!
 
-    public RawImage img;
+    private string url;
+    [SerializeField]
+    private RawImage img;
+    [SerializeField]
+    private int zoom;
+    [SerializeField]
+    private int mapWidth;
+    [SerializeField]
+    private int mapHeight;
+    [SerializeField]
+    private int scale;
 
-    string url;
-    public int zoom = 14;
-    public int mapWidth = 640;
-    public int mapHeight = 640;
 
-    public int scale;
+    //First coordinates
     private bool _hasOriginCoord = false;
     private double _originLatValue;
     private double _originLongValue;
@@ -91,8 +97,8 @@ public class GPS : MonoBehaviour
             _longValue.text = Input.location.lastData.longitude.ToString();
             _latValue.text = Input.location.lastData.latitude.ToString();
             _timeValue.text = System.DateTime.UtcNow.ToLocalTime().ToString("dd-MM-yyyy   HH:mm:ss");
-            _updateFreqValue.text = _freqValue.ToString();
-            if (_hasOriginCoord==false)
+            _updateAmmountValue.text = _freqValue.ToString();
+            if (_hasOriginCoord==false && _freqValue>3)
             {
                 _originLatValue = Input.location.lastData.longitude;
                 _originLongValue = Input.location.lastData.latitude;
@@ -112,9 +118,12 @@ public class GPS : MonoBehaviour
             "&zoom=" + zoom + "&size=" + mapWidth + "x" + mapHeight + "&scale=" + scale
             + "&maptype=roadmap" +
             "&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=" + APIKey;
-        WWW www = new WWW(url);
-        yield return www;
-        img.texture = www.texture;
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+        yield return www.SendWebRequest();
+
+        Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        img.texture = myTexture;
+        
     }
 
 
