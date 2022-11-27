@@ -37,13 +37,10 @@ public class GPS : MonoBehaviour
     [SerializeField]
     private int scale;
 
-
     //First coordinates
     private bool _hasOriginCoord = false;
     private double _originLatValue;
     private double _originLongValue;
-
-
 
     private void Update()
     {
@@ -53,6 +50,7 @@ public class GPS : MonoBehaviour
             _isUpdating = !_isUpdating;
         }
     }
+
     IEnumerator GetLocation()
     {
         if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
@@ -112,6 +110,7 @@ public class GPS : MonoBehaviour
         _isUpdating = !_isUpdating;
         Input.location.Stop();
     }
+
     IEnumerator MapExtractor()
     {
         url = "https://maps.googleapis.com/maps/api/staticmap?center=" + _originLongValue + "," + _originLatValue +
@@ -123,8 +122,5 @@ public class GPS : MonoBehaviour
 
         Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         img.texture = myTexture;
-        
     }
-
-
 }

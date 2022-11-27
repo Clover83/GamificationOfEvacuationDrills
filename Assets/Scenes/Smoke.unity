@@ -212,10 +212,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92746d0f09558841906e505146889a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: 1
-  DrainSpeed: 0.1
-  RegenSpeed: 0.1
-  isDraining: 1
+  _oxygen: 1
+  _drainSpeed: 0.1
+  _regenSpeed: 0.1
+  _isDraining: 1
 --- !u!1 &414324831
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +401,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2197,7 +2197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 370, y: 220}
+  m_AnchoredPosition: {x: 370, y: 280}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628702375804411960
@@ -2746,7 +2746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 370, y: 220}
+  m_AnchoredPosition: {x: 370, y: 280}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &628702376537002038

@@ -6,10 +6,10 @@ public class OxygenManager : MonoBehaviour
 {
     private RectTransform bar;
     [Range(0,1)]
-    [SerializeField] private float oxygen = 1.0f;
-    [SerializeField] private float DrainSpeed = 0.1f;
-    [SerializeField] private float RegenSpeed = 0.1f;
-    [SerializeField] private bool isDraining = true;
+    [SerializeField] private float _oxygen = 1.0f;
+    [SerializeField] private float _drainSpeed = 0.1f;
+    [SerializeField] private float _regenSpeed = 0.1f;
+    [SerializeField] private bool _isDraining = true;
 
     void Start()
     {
@@ -18,29 +18,29 @@ public class OxygenManager : MonoBehaviour
 
     void Update()
     {
-        if(isDraining)
+        if(_isDraining)
         {
-            if(oxygen > 0)
-                oxygen -= Time.deltaTime * DrainSpeed;
+            if(_oxygen > 0)
+                _oxygen -= Time.deltaTime * _drainSpeed;
             else
-                oxygen = 0;
+                _oxygen = 0;
         } 
         else
         {
-            if (oxygen < 1)
-                oxygen += Time.deltaTime * RegenSpeed;
+            if (_oxygen < 1)
+                _oxygen += Time.deltaTime * _regenSpeed;
             else
-                oxygen = 1;
+                _oxygen = 1;
         }
 
-        setScale(new Vector3(oxygen, 1, 1));
+        SetScale(new Vector3(_oxygen, 1, 1));
     }
 
     // Getters and setters
-    void setScale(Vector3 scalar) => bar.localScale = scalar;
-    Vector3 getScale() => bar.localScale;
-    void setDrainSpeed(float f) => DrainSpeed = f;
-    float getDrainSpeed() => DrainSpeed;
-    void setIsDraining(bool b) => isDraining = b;
-    bool getIsDraining() => isDraining;
+    void SetScale(Vector3 scalar) => bar.localScale = scalar;
+    Vector3 GetScale() => bar.localScale;
+    void SetDrainSpeed(float f) => _drainSpeed = f;
+    float GetDrainSpeed() => _drainSpeed;
+    void SetIsDraining(bool b) => _isDraining = b;
+    bool GetIsDraining() => _isDraining;
 }
