@@ -25,6 +25,7 @@ public class DatabaseHandler
         data.position = position;
         data.time = time;
         positionData.Append(data);
+        // Placeholder method, to be implemented later
     }
 
     /// <summary>
@@ -32,6 +33,7 @@ public class DatabaseHandler
     /// </summary>
     bool SendData()
     {
+        // Placeholder method, to be implemented later
         return false;
     }
 }
