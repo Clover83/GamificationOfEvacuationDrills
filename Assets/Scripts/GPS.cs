@@ -23,25 +23,35 @@ public class GPS : MonoBehaviour
     private bool _isUpdating;
 
     //MAP EXTRACTION RELATED
-    private string APIKey = "AIzaSyABf9xEz9KJ1dYmU2WZE9rDBevYjTtNriw"; // !!CHRIS DONT TOUCH!!
 
-    private string url;
+    private string APIKey = "AIzaSyABf9xEz9KJ1dYmU2WZE9rDBevYjTtNriw"; // !!CHRIS DONT TOUCH!!
+    private string _url;
     [SerializeField]
-    private RawImage img;
+    private RawImage _img;
     [SerializeField]
-    private int zoom;
+    private int _zoom;
     [SerializeField]
-    private int mapWidth;
+    private int _mapWidth;
     [SerializeField]
-    private int mapHeight;
+    private int _mapHeight;
     [SerializeField]
-    private int scale;
+    private int _scale;
 
     //First coordinates
     private bool _hasOriginCoord = false;
     private double _originLatValue;
     private double _originLongValue;
 
+    //Storage
+    private Hashtable _myHashtable = new Hashtable();
+    private int _index;
+
+    [SerializeField]
+    private GameObject _phoneGameObject;
+    private Vector2 _objectPos;
+    private int _frameNr;
+    [SerializeField]
+    private TextMeshProUGUI _debugPhonePosTextElement;
     private void Update()
     {
         if (!_isUpdating)
@@ -49,6 +59,9 @@ public class GPS : MonoBehaviour
             StartCoroutine(GetLocation());
             _isUpdating = !_isUpdating;
         }
+
+        PosUpdater();
+        ValueStoragePhonePos();
     }
 
     IEnumerator GetLocation()
@@ -101,7 +114,7 @@ public class GPS : MonoBehaviour
                 _originLatValue = Input.location.lastData.longitude;
                 _originLongValue = Input.location.lastData.latitude;
                 _hasOriginCoord = true;
-                img = gameObject.GetComponent<RawImage>();
+                _img = gameObject.GetComponent<RawImage>();
                 StartCoroutine(MapExtractor());
             }
         }
@@ -113,14 +126,62 @@ public class GPS : MonoBehaviour
 
     IEnumerator MapExtractor()
     {
-        url = "https://maps.googleapis.com/maps/api/staticmap?center=" + _originLongValue + "," + _originLatValue +
-            "&zoom=" + zoom + "&size=" + mapWidth + "x" + mapHeight + "&scale=" + scale
+        _url = "https://maps.googleapis.com/maps/api/staticmap?center=" + _originLongValue + "," + _originLatValue +
+            "&zoom=" + _zoom + "&size=" + _mapWidth + "x" + _mapHeight + "&scale=" + _scale
             + "&maptype=roadmap" +
             "&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=" + APIKey;
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(_url);
         yield return www.SendWebRequest();
 
         Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-        img.texture = myTexture;
+        _img.texture = myTexture;
+    }
+
+    Vector2 GetLongLat()
+    {
+        return new Vector2(Input.location.lastData.latitude, Input.location.lastData.longitude);
+    }
+
+    string GetTime()
+    {
+        return System.DateTime.UtcNow.ToLocalTime().ToString("dd-MM-yyyy   HH:mm:ss");
+    }
+
+    void ValueStorageGPS()
+    {
+        if (!_myHashtable.Contains(GetLongLat()))
+        {
+            _myHashtable.Add(GetLongLat(), _index);
+            _index++;
+        }
+    }
+    void ValueStoragePhonePos()
+    {
+        if (!_myHashtable.Contains(GetObjectPos()))
+        {
+            _myHashtable.Add(GetObjectPos(), _index);
+            _index++;
+        }
+    }
+
+    void PosUpdater()
+    {
+        if (_frameNr % 6 == 0)
+        {
+            _objectPos = new Vector2(_phoneGameObject.transform.position.x, _phoneGameObject.transform.position.y);
+            _debugPhonePosTextElement.text = _objectPos.ToString();
+        }
+        _frameNr++;
+    }
+    Vector2 GetObjectPos()
+    {
+        return _objectPos;
+    }
+    void PrintTable()
+    {
+        foreach (DictionaryEntry entry in _myHashtable)
+        {
+            Debug.Log(entry.Key + ":" + entry.Value);
+        }
     }
 }
