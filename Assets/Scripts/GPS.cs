@@ -45,13 +45,30 @@ public class GPS : MonoBehaviour
     //Storage
     private Hashtable _myHashtable = new Hashtable();
     private int _index;
-
     [SerializeField]
     private GameObject _phoneGameObject;
     private Vector2 _objectPos;
     private int _frameNr;
     [SerializeField]
     private TextMeshProUGUI _debugPhonePosTextElement;
+
+    private List<Vector2> Positions =new List<Vector2>();
+
+    //DRAW
+    [SerializeField]
+    private bool _Draw=false;
+    [SerializeField]
+    private Button _yourButton;
+    //Button purely for testing and updating it when you want instead of updating every second by sending an API request or every so often etc.
+    void Start()
+    {
+        Button btn = _yourButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+    }
+    void TaskOnClick()
+    {
+        _Draw = true;
+    }
     private void Update()
     {
         if (!_isUpdating)
@@ -59,9 +76,14 @@ public class GPS : MonoBehaviour
             StartCoroutine(GetLocation());
             _isUpdating = !_isUpdating;
         }
-
         PosUpdater();
         ValueStoragePhonePos();
+        if (_Draw)
+        {
+            StartCoroutine(MapExtractor());
+            _Draw = false;
+        }
+
     }
 
     IEnumerator GetLocation()
@@ -115,7 +137,6 @@ public class GPS : MonoBehaviour
                 _originLongValue = Input.location.lastData.latitude;
                 _hasOriginCoord = true;
                 _img = gameObject.GetComponent<RawImage>();
-                StartCoroutine(MapExtractor());
             }
         }
 
@@ -130,11 +151,19 @@ public class GPS : MonoBehaviour
             "&zoom=" + _zoom + "&size=" + _mapWidth + "x" + _mapHeight + "&scale=" + _scale
             + "&maptype=roadmap" +
             "&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=" + APIKey;
+        
+
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(_url);
         yield return www.SendWebRequest();
-
-        Texture myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
-        _img.texture = myTexture;
+        Texture2D _myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        for(int i = 0; i < _myHashtable.Count; i++)
+        {
+            //Set Pixel needs it to be an intiger, that's why I multiply it by 100, since the camera gets small positions like +-0,01 to +-1,50 max ish from testing
+            //But this is such a shit method so will try to do it with gps and drawing a line between the points or this will be one of the things we don't do idk
+            _myTexture.SetPixel(_mapWidth / 2 + (Mathf.RoundToInt(Positions[i].x * 100)), _mapHeight / 2 + (Mathf.RoundToInt(Positions[i].y * 100)), Color.red);
+        }
+        _myTexture.Apply();
+        _img.texture = _myTexture;
     }
 
     Vector2 GetLongLat()
@@ -152,6 +181,7 @@ public class GPS : MonoBehaviour
         if (!_myHashtable.Contains(GetLongLat()))
         {
             _myHashtable.Add(GetLongLat(), _index);
+            Positions.Add(GetLongLat());
             _index++;
         }
     }
@@ -160,6 +190,7 @@ public class GPS : MonoBehaviour
         if (!_myHashtable.Contains(GetObjectPos()))
         {
             _myHashtable.Add(GetObjectPos(), _index);
+            Positions.Add(GetObjectPos());
             _index++;
         }
     }
