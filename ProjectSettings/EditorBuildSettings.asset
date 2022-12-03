@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 503606119ea43ab46a217212e22b391f
   - enabled: 1
-    path: Assets/Scenes/Smoke.unity
-    guid: 42ad67e590250514988b2b584e11c64a
+    path: Assets/Scenes/LukasTestingScene.unity
+    guid: d4cd296c5a47f4641a194ab0d0583930
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: ad0a22dcc1117e54183c5f7588e01436, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 99a84483a310ef44aa07aa16b35ba904, type: 2}
