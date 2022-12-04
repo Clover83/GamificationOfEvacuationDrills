@@ -6,6 +6,7 @@ public class Mouse : MonoBehaviour
 {
     [SerializeField]
     private Transform _cursorImage;
+
     void Start()
     {
         //sets the base cursor invis
@@ -15,5 +16,6 @@ public class Mouse : MonoBehaviour
     void Update()
     {
         _cursorImage.position = Input.mousePosition;
+
     }
 }
