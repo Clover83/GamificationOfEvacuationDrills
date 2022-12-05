@@ -67,3 +67,7 @@ crashlytics-build.properties
 # Ignore builds
 /[Bb]uild
 *.apk
+
+# Ignore sensitive credentials
+*creds.json
+*creds.json.meta
