@@ -3,4 +3,4 @@
 
 
 ### Developer notes
-Remember to initialize `Resources/creds.json` after cloning the project.
+Remember to initialize `Assets/Resources/creds.json` after cloning the project.
