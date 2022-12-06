@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ProximityAlarm : MonoBehaviour
@@ -14,11 +15,14 @@ public class ProximityAlarm : MonoBehaviour
     [Range(0.0F, 5.0F)]
     private float _timeBetweenBeep;
     private float _distanceBetweenObjects;
+    [SerializeField]
+    private TextMeshProUGUI _gpsStatus;
 
     private bool _once= false;
     private void Update()
     {
         _distanceBetweenObjects = Vector3.Distance(_player.transform.position, _exit.transform.position);
+        _gpsStatus.text = _distanceBetweenObjects.ToString();
         Debug.Log(_distanceBetweenObjects);
         if(_distanceBetweenObjects > 20&&_once == false)
         {
