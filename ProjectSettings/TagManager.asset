@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< Updated upstream
   tags: []
+=======
+  tags:
+  - Shootable
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -13,9 +18,15 @@ TagManager:
   - UI
   - 
   - 
+<<<<<<< Updated upstream
   - 
   - 
   - 
+=======
+  - Lighting
+  - Ground
+  - Postprocessing
+>>>>>>> Stashed changes
   - 
   - 
   - 
@@ -38,6 +49,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
