@@ -4,28 +4,30 @@ using UnityEngine;
 
 public class AreaChecker : MonoBehaviour
 {
-
-    public AudioClip WinClip;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private OxygenManager _oxygenManager;
+    [SerializeField]
+    private AudioClip _winClip;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
+        //Debug.Log("Enter:" + other.tag);
         if(other.tag == "Goal")
         {
-            SoundHandler.Instance.PlaySound(WinClip);
-            Debug.Log("Goal reached.");
+            SoundHandler.Instance.PlaySound(_winClip);
+        }
+        else if (other.tag == "Obstacle")
+        {
+            _oxygenManager.SetIsDraining(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //Debug.Log("Exit:" + other.tag);
+        if (other.tag == "Obstacle")
+        {
+            _oxygenManager.SetIsDraining(false);
         }
     }
 }

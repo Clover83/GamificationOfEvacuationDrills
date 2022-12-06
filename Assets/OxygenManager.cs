@@ -37,10 +37,10 @@ public class OxygenManager : MonoBehaviour
     }
 
     // Getters and setters
-    void SetScale(Vector3 scalar) => bar.localScale = scalar;
-    Vector3 GetScale() => bar.localScale;
-    void SetDrainSpeed(float f) => _drainSpeed = f;
-    float GetDrainSpeed() => _drainSpeed;
-    void SetIsDraining(bool b) => _isDraining = b;
-    bool GetIsDraining() => _isDraining;
+    public void SetScale(Vector3 scalar) => bar.localScale = scalar;
+    public Vector3 GetScale() => bar.localScale;
+    public void SetDrainSpeed(float f) => _drainSpeed = f;
+    public float GetDrainSpeed() => _drainSpeed;
+    public void SetIsDraining(bool b) => _isDraining = b;
+    public bool GetIsDraining() => _isDraining;
 }
