@@ -6,6 +6,8 @@ public class Pause : MonoBehaviour
 {
     //public GameObject PauseMenu;
     //public static bool gameIsPaused;
+
+    public GameObject ArSession;
     void Start()
     {
 
@@ -16,10 +18,12 @@ public class Pause : MonoBehaviour
    public void PauseGame()
    {
         Time.timeScale = 0f;
+        ArSession.SetActive(false);
     }
    public void UnPauseGame()
    {
        Time.timeScale = 1;
+       ArSession.SetActive(true);
    }
    //public void QuitGame()
    //{

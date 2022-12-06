@@ -18,6 +18,7 @@ public class DebugData
 public class DebugPointSpawner : MonoBehaviour
 {
     [Tooltip("The time between point spawns in seconds.")]
+    [Range(0.01f, 1.0f)]
     public float SpawnInterval = 1.0f;
     public GameObject DebugObject;
 
