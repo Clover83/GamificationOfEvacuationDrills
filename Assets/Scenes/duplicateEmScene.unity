@@ -1722,7 +1722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _oxygenManager: {fileID: 1470289682}
-  _winClip: {fileID: 8300000, guid: 9279cbc9d7e15c34a9534489159c1a32, type: 3}
+  _winClip: {fileID: 8300000, guid: e81a6a9fbb4f826409eda56032db8bd2, type: 3}
+  _exitObject: {fileID: 4697792395884581314}
 --- !u!136 &1113890118
 CapsuleCollider:
   m_ObjectHideFlags: 0

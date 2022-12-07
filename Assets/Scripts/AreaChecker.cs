@@ -8,13 +8,15 @@ public class AreaChecker : MonoBehaviour
     private OxygenManager _oxygenManager;
     [SerializeField]
     private AudioClip _winClip;
-
+    [SerializeField]
+    private GameObject _exitObject;
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Enter:" + other.tag);
         if(other.tag == "Goal")
         {
             SoundHandler.Instance.PlaySound(_winClip);
+            _exitObject.SetActive(false);
         }
         else if (other.tag == "Obstacle")
         {

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 503606119ea43ab46a217212e22b391f
   - enabled: 1
+    path: Assets/Scenes/DuplicateEmScene.unity
+    guid: 20839c1b786f6874593d354e2d5e5b40
+  - enabled: 1
     path: Assets/Scenes/EmilyTestingScene.unity
     guid: 1210cbac46ea75b41a9eb0ba8ea0b92b
   - enabled: 0
