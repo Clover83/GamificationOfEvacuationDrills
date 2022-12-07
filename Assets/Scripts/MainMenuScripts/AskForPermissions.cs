@@ -9,14 +9,19 @@ public class AskForPermissions : MonoBehaviour
     //Increase size if there is a need for more perms
     string[] _permissions = new string[2];
     static int _nrPerms;
+    static bool _asked = false;
     private void Start()
     {
-        //AddPermission(Permission.Microphone.ToString());
-        //AddPermission(Permission.ExternalStorageRead.ToString());
-        AddPermission(Permission.FineLocation.ToString());
-        AddPermission(Permission.Camera.ToString());
+        if(_asked == false)
+        {
+            _asked = true;
+            //AddPermission(Permission.Microphone.ToString());
+            //AddPermission(Permission.ExternalStorageRead.ToString());
+            AddPermission(Permission.FineLocation.ToString());
+            AddPermission(Permission.Camera.ToString());
+            Permission.RequestUserPermissions(_permissions);
+        }
 
-        Permission.RequestUserPermissions(_permissions);
     }
 
     void AddPermission(string bob)
