@@ -19,12 +19,15 @@ public class ProximityAlarm : MonoBehaviour
     private TextMeshProUGUI _gpsStatus;
 
     private bool _once= false;
+    private float _waitTime;
     private void Update()
     {
         _distanceBetweenObjects = Vector3.Distance(_player.transform.position, _exit.transform.position);
         _gpsStatus.text = _distanceBetweenObjects.ToString();
         Debug.Log(_distanceBetweenObjects);
-        if(_distanceBetweenObjects > 20&&_once == false)
+        _waitTime += Time.deltaTime;
+        Debug.Log(_waitTime);
+        if(_once == false && _waitTime > 6.0f)
         {
             _once = true;
             StartCoroutine(StartBeep());
@@ -34,6 +37,12 @@ public class ProximityAlarm : MonoBehaviour
     {
         while (true)
         {
+            if (_distanceBetweenObjects > 10)
+                _timeBetweenBeep = 4.0f;
+            if (10.0f > _distanceBetweenObjects && _distanceBetweenObjects > 5.0f)
+                _timeBetweenBeep = 2.5f;
+            if (5.0f > _distanceBetweenObjects)
+                _timeBetweenBeep = 1.5f;
             SoundHandler.Instance.PlaySound(_beepClip);
             yield return new WaitForSeconds(_timeBetweenBeep);
         }
