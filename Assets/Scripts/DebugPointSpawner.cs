@@ -33,6 +33,11 @@ public class DebugPointSpawner : MonoBehaviour
     private string master_key;
     private string access_key;
 
+
+    [SerializeField]
+    private GameObject _victoryScreen;
+    [SerializeField]
+    private bool _once = false;
     private void Start()
     {
         APIKeys keys = APIKeys.LoadKeys();
@@ -51,6 +56,12 @@ public class DebugPointSpawner : MonoBehaviour
             Data.PointList.Add(transform.position);
         }
         _timeSinceSpawn += Time.deltaTime;
+
+        if (_victoryScreen.activeInHierarchy == true && _once == false)
+        {
+            _once = true;
+            CallSendData();
+        }
     }
 
     public void CallSendData()

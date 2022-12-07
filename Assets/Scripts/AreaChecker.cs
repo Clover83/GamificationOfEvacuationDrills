@@ -23,7 +23,6 @@ public class AreaChecker : MonoBehaviour
             SoundHandler.Instance.PlaySound(_winClip);
             _exitObject.SetActive(false);
             _victoryCanvas.SetActive(_victoryCanvas);
-            _playerFollower.SetActive(false);//can be removed ig
         }
         else if (other.tag == "Obstacle")
         {

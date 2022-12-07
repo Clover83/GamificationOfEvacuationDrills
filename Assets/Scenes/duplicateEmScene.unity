@@ -1804,6 +1804,8 @@ MonoBehaviour:
   DebugObject: {fileID: 8961793680296660633, guid: 9c114b51d7aa2ca42874cf23abe62a25, type: 3}
   Data:
     PointList: []
+  _victoryScreen: {fileID: 6237140}
+  _once: 0
 --- !u!1 &823783750
 GameObject:
   m_ObjectHideFlags: 0

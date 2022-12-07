@@ -24,9 +24,7 @@ public class ProximityAlarm : MonoBehaviour
     {
         _distanceBetweenObjects = Vector3.Distance(_player.transform.position, _exit.transform.position);
         _gpsStatus.text = _distanceBetweenObjects.ToString();
-        Debug.Log(_distanceBetweenObjects);
         _waitTime += Time.deltaTime;
-        Debug.Log(_waitTime);
         if(_once == false && _waitTime > 6.0f)
         {
             _once = true;
