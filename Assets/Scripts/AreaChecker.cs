@@ -14,7 +14,9 @@ public class AreaChecker : MonoBehaviour
     private GameObject _victoryCanvas;
     [SerializeField]
     private GameObject _playerFollower;
-    
+    [SerializeField]
+    private GameObject _cameraSmokeEmiter;
+
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Enter:" + other.tag);
@@ -27,6 +29,7 @@ public class AreaChecker : MonoBehaviour
         else if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(true);
+            _cameraSmokeEmiter.SetActive(true);
         }
     }
 
@@ -36,6 +39,7 @@ public class AreaChecker : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(false);
+            _cameraSmokeEmiter.SetActive(false);
         }
     }
 }

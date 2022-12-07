@@ -2443,6 +2443,7 @@ MonoBehaviour:
   _exitObject: {fileID: 4697792395884581314}
   _victoryCanvas: {fileID: 6237140}
   _playerFollower: {fileID: 804037361}
+  _cameraSmokeEmiter: {fileID: 1471921173}
 --- !u!136 &1113890118
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3179,6 +3180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a90532d365a1667439ef65dc3bc4f689, type: 3}
+--- !u!1 &1471921173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1059007434123721876, guid: a90532d365a1667439ef65dc3bc4f689, type: 3}
+  m_PrefabInstance: {fileID: 1471921172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1473872223
 GameObject:
   m_ObjectHideFlags: 0
