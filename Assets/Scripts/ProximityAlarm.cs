@@ -36,11 +36,14 @@ public class ProximityAlarm : MonoBehaviour
         while (true)
         {
             if (_distanceBetweenObjects > 10)
-                _timeBetweenBeep = 4.0f;
-            if (10.0f > _distanceBetweenObjects && _distanceBetweenObjects > 5.0f)
-                _timeBetweenBeep = 2.5f;
-            if (5.0f > _distanceBetweenObjects)
-                _timeBetweenBeep = 1.5f;
+                _timeBetweenBeep = 2.0f;
+            if (10.0f > _distanceBetweenObjects && _distanceBetweenObjects > 7.0f)
+                _timeBetweenBeep = 1.0f;
+            if (7.0f > _distanceBetweenObjects && _distanceBetweenObjects > 4.0f)
+                _timeBetweenBeep = 0.75f;
+            if (4.0f > _distanceBetweenObjects)
+                _timeBetweenBeep = 0.25f;
+
             SoundHandler.Instance.PlaySound(_beepClip);
             yield return new WaitForSeconds(_timeBetweenBeep);
         }
