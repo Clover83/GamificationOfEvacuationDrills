@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class AreaChecker : MonoBehaviour
 {
     [SerializeField]
@@ -15,7 +16,13 @@ public class AreaChecker : MonoBehaviour
     [SerializeField]
     private GameObject _playerFollower;
     [SerializeField]
-    private GameObject _cameraSmokeEmiter;
+    private ParticleSystem _cameraSmokeEmiter;
+
+    private void Awake()
+    {
+        _cameraSmokeEmiter.Clear();
+        _cameraSmokeEmiter.Pause();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +36,8 @@ public class AreaChecker : MonoBehaviour
         else if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(true);
-            _cameraSmokeEmiter.SetActive(true);
+            _cameraSmokeEmiter.Emit(100);
+            _cameraSmokeEmiter.Play();
         }
     }
 
@@ -39,7 +47,8 @@ public class AreaChecker : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(false);
-            _cameraSmokeEmiter.SetActive(false);
+            _cameraSmokeEmiter.Clear();
+            _cameraSmokeEmiter.Pause();
         }
     }
 }

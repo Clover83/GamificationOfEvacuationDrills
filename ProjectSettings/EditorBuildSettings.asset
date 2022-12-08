@@ -8,8 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 503606119ea43ab46a217212e22b391f
-  - enabled: 1
-    path: Assets/Scenes/DuplicateEmScene.unity
+  - enabled: 0
+    path: Assets/Scenes/duplicateEmScene.unity
     guid: 20839c1b786f6874593d354e2d5e5b40
   - enabled: 0
     path: Assets/Scenes/EmilyTestingScene.unity
@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LukasTestingScene.unity
     guid: d4cd296c5a47f4641a194ab0d0583930
+  - enabled: 1
+    path: Assets/Scenes/KitDuplicate.unity
+    guid: ac5cc44c679ca484fb640b063f07dd4f
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: ad0a22dcc1117e54183c5f7588e01436, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 99a84483a310ef44aa07aa16b35ba904, type: 2}
