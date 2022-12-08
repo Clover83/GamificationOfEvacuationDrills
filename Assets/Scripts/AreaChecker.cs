@@ -15,10 +15,17 @@ public class AreaChecker : MonoBehaviour
     [SerializeField]
     private GameObject _playerFollower;
     [SerializeField]
-    private GameObject _cameraSmokeEmiter;
+    private ParticleSystem _cameraSmokeEmiter;
     [SerializeField]
     private GameObject _defeatCanvas;
     bool _once = false;
+
+    private void Awake()
+    {
+        _cameraSmokeEmiter.Clear();
+        _cameraSmokeEmiter.Pause();
+    }
+
     private void Update()
     {
        if(_oxygenManager.GetOxygen() == 0.0f && _once ==false)
@@ -41,7 +48,8 @@ public class AreaChecker : MonoBehaviour
         else if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(true);
-            _cameraSmokeEmiter.SetActive(true);
+            _cameraSmokeEmiter.Emit(100);
+            _cameraSmokeEmiter.Play();
         }
     }
 
@@ -51,7 +59,8 @@ public class AreaChecker : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(false);
-            _cameraSmokeEmiter.SetActive(false);
+            _cameraSmokeEmiter.Clear();
+            _cameraSmokeEmiter.Pause();
         }
     }
 }
