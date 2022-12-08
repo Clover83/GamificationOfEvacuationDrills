@@ -16,7 +16,19 @@ public class AreaChecker : MonoBehaviour
     private GameObject _playerFollower;
     [SerializeField]
     private GameObject _cameraSmokeEmiter;
-
+    [SerializeField]
+    private GameObject _defeatCanvas;
+    bool _once = false;
+    private void Update()
+    {
+       if(_oxygenManager.GetOxygen() == 0.0f && _once ==false)
+        {
+            _once= true;
+            SoundHandler.Instance.PlaySound(_winClip);
+            _exitObject.SetActive(false);
+            _defeatCanvas.SetActive(true);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Enter:" + other.tag);
@@ -24,7 +36,7 @@ public class AreaChecker : MonoBehaviour
         {
             SoundHandler.Instance.PlaySound(_winClip);
             _exitObject.SetActive(false);
-            _victoryCanvas.SetActive(_victoryCanvas);
+            _victoryCanvas.SetActive(true);
         }
         else if (other.tag == "Obstacle")
         {
