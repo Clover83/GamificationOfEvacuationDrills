@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     }
     public void ReloadScene()
     {
+        Caching.ClearCache();
+        SceneManager.UnloadSceneAsync(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //Reloads the scene
     }
     public void BackToMain()

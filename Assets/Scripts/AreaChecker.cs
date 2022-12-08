@@ -9,6 +9,8 @@ public class AreaChecker : MonoBehaviour
     [SerializeField]
     private AudioClip _winClip;
     [SerializeField]
+    private AudioClip _defeatClip;
+    [SerializeField]
     private GameObject _exitObject;
     [SerializeField]
     private GameObject _victoryCanvas;
@@ -31,7 +33,7 @@ public class AreaChecker : MonoBehaviour
        if(_oxygenManager.GetOxygen() == 0.0f && _once ==false)
         {
             _once= true;
-            SoundHandler.Instance.PlaySound(_winClip);
+            SoundHandler.Instance.PlaySound(_defeatClip);
             _exitObject.SetActive(false);
             _defeatCanvas.SetActive(true);
         }
@@ -44,6 +46,7 @@ public class AreaChecker : MonoBehaviour
             SoundHandler.Instance.PlaySound(_winClip);
             _exitObject.SetActive(false);
             _victoryCanvas.SetActive(true);
+
         }
         else if (other.tag == "Obstacle")
         {
