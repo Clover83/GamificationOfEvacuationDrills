@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 503606119ea43ab46a217212e22b391f
   - enabled: 0
@@ -17,9 +17,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LukasTestingScene.unity
     guid: d4cd296c5a47f4641a194ab0d0583930
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EmilyTestingScene.unity
     guid: 3fbe1801c63f7c6499caa2da00ec5aea
+  - enabled: 1
+    path: Assets/Scenes/DynamicPositionPicker.unity
+    guid: b6fde8cde74232c4db77befee13c564b
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: ad0a22dcc1117e54183c5f7588e01436, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 99a84483a310ef44aa07aa16b35ba904, type: 2}
