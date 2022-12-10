@@ -59,18 +59,10 @@ public class TouchManipulation : MonoBehaviour
 
             Vector3 newPos = Vector3.LerpUnclamped(pos1, _mainCamera.transform.position, 1 / zoom);
             float newSize = _mainCamera.orthographicSize / zoom;
-            Debug.Log("min: " + _minOrthographicSize + " new: " + newSize + " max: " + _maxOrthographicSize);
-            string deb = "(min <= new && new <= max) evaluated to: ";
             if (_minOrthographicSize <= newSize && newSize <= _maxOrthographicSize)
             {
-                deb += "true";
                 _mainCamera.orthographicSize = newSize;
             }
-            else
-            {
-                deb += "false";
-            }
-            Debug.Log(deb);
             newPos.y = _cameraHeight;
             _mainCamera.transform.position = newPos;
 
