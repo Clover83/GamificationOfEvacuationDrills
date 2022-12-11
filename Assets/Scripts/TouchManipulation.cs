@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 
@@ -25,15 +26,20 @@ public class TouchManipulation : MonoBehaviour
 
     private void Update()
     {
-
+        
         Vector3 delta1 = Vector3.zero;
         Vector3 delta2 = Vector3.zero;
 
         if (Input.touchCount >= 1)
         {
+            Touch touch = Input.GetTouch(0);
             _plane.SetNormalAndPosition(transform.up, transform.position);
-            delta1 = GetPlaneDelta(Input.GetTouch(0));
-            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            delta1 = GetPlaneDelta(touch);
+
+            // Make sure touches aren't counted on ui;
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId)) return;
+
+            if (touch.phase == TouchPhase.Moved)
             {
                 _mainCamera.transform.Translate(delta1, Space.World);
             }

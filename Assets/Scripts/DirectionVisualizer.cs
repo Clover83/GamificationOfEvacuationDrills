@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Rendering.HybridV2;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DirectionVisualizer : MonoBehaviour
 {
@@ -10,37 +11,47 @@ public class DirectionVisualizer : MonoBehaviour
 
     private Camera _mainCamera;
     private float[] _angles;
+    private float ratio;
+    private int _currentAngleIndex = 0;
 
     // Returns angle in degrees from x-axis. Z-axis is positive.
     public float GetAngle()
     {
+        if (Divisions > 0)
+        {
+            return _angles[_currentAngleIndex];
+        }
         return Vector3.Angle(Vector3.right, transform.forward);
     }
 
     private void Awake()
     {
         _mainCamera = Camera.main;
-        float ratio = 360 / Divisions;
+        ratio = 360 / Divisions;
         _angles = new float[Divisions];
         for (int i = 0; i < Divisions; i++)
         {
             float angle = ratio * i;
             _angles[i] = angle;
         }
-        Debug.Log(_angles);
     }
 
     private void Update()
     {
         if (Input.touchCount >= 1)
         {
-            Vector2 screenTouch = Input.GetTouch(0).position;
+            Touch touch = Input.GetTouch(0);
+
+            // Make sure touches aren't counted on ui;
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId)) return;
+
             Vector2 here = _mainCamera.WorldToScreenPoint(transform.position);
-            Vector3 dir = new Vector3(screenTouch.x - here.x, 0, screenTouch.y - here.y);
+            Vector3 dir = new Vector3(touch.position.x - here.x, 0, touch.position.y - here.y);
 
             float a = Vector3.SignedAngle(transform.forward, dir, transform.up);
             a = GetSnapAngle(a);
             transform.Rotate(Vector3.up, a);
+            Debug.Log(GetAngle());
         } 
     }
 
@@ -53,28 +64,30 @@ public class DirectionVisualizer : MonoBehaviour
         {
             r = SignedToUnsigned(realAngle);
         }
-        Debug.Log(r);
 
         // Find closest
-        int index = System.Array.BinarySearch(_angles, r);
-        float ret = 0;
-        if (index < 0)
+        // Very janky, but has the benifit of no flickering.
+        // There are probably much better ways to acheive that.
+        // TODO: Fix angle accuracy.
+        int search = System.Array.BinarySearch(_angles, r);
+        float ret;
+        if (search < 0)
         {
             // ~ gets bitwise complement which is the index of the next highest item in list.
-            // if r is bigger than all elements in the list then ~index == _angles.Length
-            int i = ~index;
+            // if r is bigger than all elements in the list then ~search == _angles.Length
+            int i = ~search - 1;
             if (i >= _angles.Length)
                 ret = 0;
             else
             {
                 ret = _angles[i];
+                _currentAngleIndex = i;
             }
-            
-            
         }
         else
         {
-            ret = _angles[index];
+            ret = _angles[search];
+            _currentAngleIndex = search;
         }
 
         if (useSigned)
