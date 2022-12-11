@@ -311,7 +311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 338d208a100c19c43b3d5d0f7a171c81, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5d19ff7f0549194c91e447556af7da0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 48d2391002a1a364e91269327e5c22d7, type: 3}
+  m_Texture: {fileID: 2800000, guid: 23a3b7134da88ee45970300250c6fbab, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -871,7 +871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b9b6d512186b9442970c0db7afbc309, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6876ffa5147854b89bb00daab31ed5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 575344472}
   - component: {fileID: 575344471}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: in the building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -947,7 +947,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3c2eaa5f8b8adfb49ab9e458f2d85d96, type: 3}
+  m_Texture: {fileID: 2800000, guid: 862544e5b7024b04f822bf5c56b8f318, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 898a5d94e8ffa9745b1a61d5ca81e645, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd18d43edc219074690b6f5eb9b220e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b9b6d512186b9442970c0db7afbc309, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af6876ffa5147854b89bb00daab31ed5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1696,7 +1696,7 @@ GameObject:
   - component: {fileID: 1462463651}
   - component: {fileID: 1462463650}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 31bb357d36334b945a1353419f8ea67f, type: 3}
+  m_Texture: {fileID: 2800000, guid: 297a3960e205acc44983fc47364a4d56, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2196,7 +2196,7 @@ GameObject:
   - component: {fileID: 1594718105}
   - component: {fileID: 1594718104}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: Where are you
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2242,7 +2242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: adbb546c34a4c6a47b5e778b6fe0c7cf, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2385e50e03188ba47883f8fd476ff3c4, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2269,7 +2269,7 @@ GameObject:
   - component: {fileID: 1611123057}
   - component: {fileID: 1611123056}
   m_Layer: 5
-  m_Name: RawImage (1)
+  m_Name: camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2315,7 +2315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 113910a2ba876c34ab6f65f9345cd71e, type: 3}
+  m_Texture: {fileID: 2800000, guid: 73e134a845ccf7e42a2902b14eab8470, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2342,7 +2342,7 @@ GameObject:
   - component: {fileID: 1628337389}
   - component: {fileID: 1628337388}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: is this correct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2388,7 +2388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3e9db4f1b4a97234a8c9967734edc308, type: 3}
+  m_Texture: {fileID: 2800000, guid: cf0ef9cc69ff94c4c95ff56b0ef8246f, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
