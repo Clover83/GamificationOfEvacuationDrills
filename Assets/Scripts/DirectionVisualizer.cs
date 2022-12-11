@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.ARFoundation;
 
 public class DirectionVisualizer : MonoBehaviour
 {
@@ -31,14 +33,16 @@ public class DirectionVisualizer : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            // Make sure touches aren't counted on ui;
+            // Make sure touches aren't counted on ui
             if (EventSystem.current.IsPointerOverGameObject(touch.fingerId)) return;
 
             Vector2 here = _mainCamera.WorldToScreenPoint(transform.position);
             Vector3 dir = new Vector3(touch.position.x - here.x, 0, touch.position.y - here.y);
 
             float a = Vector3.SignedAngle(transform.forward, dir, transform.up);
-            int divs = Mathf.RoundToInt(a / _ratio);
+            float cameraAngle = Vector3.SignedAngle(Camera.main.transform.up, Vector3.forward, Vector3.up);
+            Debug.Log(cameraAngle);
+            int divs = Mathf.RoundToInt((a - cameraAngle) / _ratio);
             transform.Rotate(Vector3.up, _ratio * divs);
         } 
     }
