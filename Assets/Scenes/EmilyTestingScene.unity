@@ -1852,6 +1852,12 @@ MonoBehaviour:
   _playerFollower: {fileID: 804037361}
   _cameraSmokeEmiter: {fileID: 1471921174}
   _defeatCanvas: {fileID: 209226922}
+  _caughingClips:
+  - {fileID: 8300000, guid: b47ffc3a3d53e704eb98d7e0177261fb, type: 3}
+  - {fileID: 8300000, guid: c591740236147dd44ae39463dba30e28, type: 3}
+  - {fileID: 8300000, guid: da0496f3aa3ec43458223784a08f306a, type: 3}
+  - {fileID: 8300000, guid: 9302beab475887b42b4122e2faf92e66, type: 3}
+  - {fileID: 8300000, guid: 340e0164ae172cf4f8b7acfc6dcd405d, type: 3}
 --- !u!136 &1113890118
 CapsuleCollider:
   m_ObjectHideFlags: 0

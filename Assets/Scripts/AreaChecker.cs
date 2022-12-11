@@ -21,7 +21,8 @@ public class AreaChecker : MonoBehaviour
     [SerializeField]
     private GameObject _defeatCanvas;
     bool _once = false;
-
+    [SerializeField]
+    private AudioClip[] _caughingClips;
     private void Awake()
     {
         _cameraSmokeEmiter.Clear();
@@ -50,7 +51,9 @@ public class AreaChecker : MonoBehaviour
         }
         else if (other.tag == "Obstacle")
         {
+            
             _oxygenManager.SetIsDraining(true);
+            StartCoroutine(CaughtingSound());
             _cameraSmokeEmiter.Emit(100);
             _cameraSmokeEmiter.Play();
         }
@@ -62,8 +65,18 @@ public class AreaChecker : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(false);
+            StopCoroutine(CaughtingSound());
             _cameraSmokeEmiter.Clear();
             _cameraSmokeEmiter.Pause();
+        }
+    }
+    IEnumerator CaughtingSound()
+    {
+        while (true)
+        {
+            int _randomNumber = Random.Range(0, 4);
+            SoundHandler.Instance.PlaySound(_caughingClips[_randomNumber]);
+            yield return new WaitForSeconds(2.0f);
         }
     }
 }
