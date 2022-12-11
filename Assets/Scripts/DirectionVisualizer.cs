@@ -40,7 +40,6 @@ public class DirectionVisualizer : MonoBehaviour
             float a = Vector3.SignedAngle(transform.forward, dir, transform.up);
             int divs = Mathf.RoundToInt(a / _ratio);
             transform.Rotate(Vector3.up, _ratio * divs);
-            Debug.Log(GetAngle());
         } 
     }
 }
