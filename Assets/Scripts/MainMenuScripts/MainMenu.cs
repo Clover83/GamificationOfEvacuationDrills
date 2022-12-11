@@ -16,8 +16,9 @@ public class MainMenu : MonoBehaviour
     public void ReloadScene()
     {
         Caching.ClearCache();
-        SceneManager.UnloadSceneAsync(1);
+        //SceneManager.UnloadSceneAsync(1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //Reloads the scene
+        Debug.Log("Retry");
     }
     public void BackToMain()
     {
