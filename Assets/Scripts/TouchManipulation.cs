@@ -35,7 +35,6 @@ public class TouchManipulation : MonoBehaviour
             delta1 = GetPlaneDelta(Input.GetTouch(0));
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
-                // TODO: Change to move self?
                 _mainCamera.transform.Translate(delta1, Space.World);
             }
         }
