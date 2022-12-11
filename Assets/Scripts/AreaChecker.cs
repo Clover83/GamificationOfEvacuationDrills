@@ -23,6 +23,7 @@ public class AreaChecker : MonoBehaviour
     bool _once = false;
     [SerializeField]
     private AudioClip[] _caughingClips;
+    bool _caughting = false;
     private void Awake()
     {
         _cameraSmokeEmiter.Clear();
@@ -65,14 +66,15 @@ public class AreaChecker : MonoBehaviour
         if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(false);
-            StopCoroutine(CaughtingSound());
+            _caughting = false;
             _cameraSmokeEmiter.Clear();
             _cameraSmokeEmiter.Pause();
         }
     }
     IEnumerator CaughtingSound()
     {
-        while (true)
+        _caughting = true;
+        while (_caughting)
         {
             int _randomNumber = Random.Range(0, 4);
             SoundHandler.Instance.PlaySound(_caughingClips[_randomNumber]);
