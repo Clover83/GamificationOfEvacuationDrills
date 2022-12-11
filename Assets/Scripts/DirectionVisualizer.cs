@@ -41,7 +41,6 @@ public class DirectionVisualizer : MonoBehaviour
 
             float a = Vector3.SignedAngle(transform.forward, dir, transform.up);
             float cameraAngle = Vector3.SignedAngle(Camera.main.transform.up, Vector3.forward, Vector3.up);
-            Debug.Log(cameraAngle);
             int divs = Mathf.RoundToInt((a - cameraAngle) / _ratio);
             transform.Rotate(Vector3.up, _ratio * divs);
         } 

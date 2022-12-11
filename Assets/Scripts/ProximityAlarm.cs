@@ -23,7 +23,8 @@ public class ProximityAlarm : MonoBehaviour
     private void Update()
     {
         _distanceBetweenObjects = Vector3.Distance(_player.transform.position, _exit.transform.position);
-        _gpsStatus.text = _distanceBetweenObjects.ToString();
+        //_gpsStatus.text = _distanceBetweenObjects.ToString();
+        _gpsStatus.text = _player.transform.position.y.ToString();
         _waitTime += Time.deltaTime;
         if(_once == false && _waitTime > 6.0f)
         {

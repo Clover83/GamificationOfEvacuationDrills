@@ -1,25 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+
+
+[System.Serializable]
+public class MaterialSwitchData
+{
+    public Material material;
+    public int layer;
+}
 
 public class MaterialSwitcher : MonoBehaviour
 {
     [SerializeField]
-    private Renderer _target;
+    private GameObject[] _targets;
     [SerializeField]
-    private Material[] _materials;
+    private MaterialSwitchData[] _matData;
 
-    private int _currentMaterial = 0;
+    private int _currentIndex = 0;
 
     public void NextMaterial()
     {
-        _currentMaterial++;
-        if (_currentMaterial >= _materials.Length)
+        _currentIndex++;
+        if (_currentIndex >= _matData.Length)
         {
-            _currentMaterial = 0;
+            _currentIndex = 0;
         }
-        _target.material = _materials[_currentMaterial];
-        
+        foreach (var target in _targets)
+        {
+            Renderer renderer = target.GetComponent<Renderer>();
+            MaterialSwitchData data = _matData[_currentIndex];
+            renderer.material = data.material;
+            target.layer = data.layer;
+        }
     }
 
 }
