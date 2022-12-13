@@ -5,9 +5,10 @@ using TMPro;
 using UnityEngine.Android;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-
+//GPS Script that retrieves latitude/longitude from the phone and uses Google API to visualize where the user is using those latitude/longitude
 public class GPS : MonoBehaviour
 {
+    //Debug texts 
     [SerializeField]
     private TextMeshProUGUI _gpsStatus;
     [SerializeField]
@@ -23,8 +24,7 @@ public class GPS : MonoBehaviour
     private bool _isUpdating;
 
     //MAP EXTRACTION RELATED
-
-    private string APIKey = "AIzaSyABf9xEz9KJ1dYmU2WZE9rDBevYjTtNriw"; // !!CHRIS DONT TOUCH!!
+    private string APIKey; 
     private string _url;
     [SerializeField]
     private RawImage _img;
@@ -60,8 +60,16 @@ public class GPS : MonoBehaviour
     [SerializeField]
     private Button _yourButton;
     //Button purely for testing and updating it when you want instead of updating every second by sending an API request or every so often etc.
+
+
+    //API Key should be put in the credentianls json
     void Start()
     {
+        //We get the API key
+        //Currently our own API keys are being used but for future use https://developers.google.com/maps/documentation/javascript/get-api-key
+        //To get your own API key and set up credentials json
+        APIKeys keys = APIKeys.LoadKeys();
+        APIKey = keys.googleMaps;
         Button btn = _yourButton.GetComponent<Button>();
         btn.onClick.AddListener(TaskOnClick);
     }
@@ -88,8 +96,10 @@ public class GPS : MonoBehaviour
 
     IEnumerator GetLocation()
     {
+        //Checks if the user has given permissions
         if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
+            //If not it requests again
             _gpsStatus.text = "No Permissions";
             Permission.RequestUserPermission(Permission.FineLocation);
             Permission.RequestUserPermission(Permission.CoarseLocation);
@@ -147,6 +157,7 @@ public class GPS : MonoBehaviour
 
     IEnumerator MapExtractor()
     {
+        //URL we use to send a WebRequest using unity's API
         _url = "https://maps.googleapis.com/maps/api/staticmap?center=" + _originLongValue + "," + _originLatValue +
             "&zoom=" + _zoom + "&size=" + _mapWidth + "x" + _mapHeight + "&scale=" + _scale
             + "&maptype=roadmap" +
@@ -155,9 +166,11 @@ public class GPS : MonoBehaviour
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(_url);
         yield return www.SendWebRequest();
+        //We download the texture that we get from Google
         Texture2D _myTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         for(int i = 0; i < _myHashtable.Count; i++)
         {
+            //--This approach has been abandoned--
             //Set Pixel needs it to be an intiger, that's why I multiply it by 100, since the camera gets small positions like +-0,01 to +-1,50 max ish from testing
             //But this is such a shit method so will try to do it with gps and drawing a line between the points or this will be one of the things we don't do idk
             _myTexture.SetPixel(_mapWidth / 2 + (Mathf.RoundToInt(Positions[i].x * 100)), _mapHeight / 2 + (Mathf.RoundToInt(Positions[i].y * 100)), Color.red);

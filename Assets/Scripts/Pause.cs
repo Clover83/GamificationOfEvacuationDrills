@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Simple script to "pause" the game
 public class Pause : MonoBehaviour
 {
     //public GameObject PauseMenu;

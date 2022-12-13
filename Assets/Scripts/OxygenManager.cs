@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Script for the oxygen bar and it's draining/regeneration
 public class OxygenManager : MonoBehaviour
 {
     private RectTransform bar;

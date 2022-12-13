@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+//Test script for spawning object on planes that you click on with touch or mouse
+//Has been abandoned and not used after the initial phase of setting AR environment up
 public class ARController : MonoBehaviour
 {
     public GameObject myObject;

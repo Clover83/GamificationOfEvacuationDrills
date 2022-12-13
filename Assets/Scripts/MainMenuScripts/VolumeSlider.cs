@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+//Volume slider script that is in the Settings in the MainMenu scene
 public class VolumeSlider : MonoBehaviour
 {
     [SerializeField]
