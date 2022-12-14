@@ -18,7 +18,7 @@ If you are extending the app to instead send the data to another server (such as
 For more in depth implementation instructions, see the APIKeys class.
 
 #### Creating the file
-The variables in creds.json should follow the naming fo the fields in the APIKeys class. The most up to date version should look like this:
+The variables in creds.json should follow the naming of the fields in the APIKeys class. The most up to date version should look like this:
 ```json
 {
 	"googleMaps":"[REPLACE WITH YOUR KEY]",
