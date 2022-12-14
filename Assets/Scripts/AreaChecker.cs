@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
+
+// Class for checking which area the player enters. For example the exit or a damaging obstacle.
 public class AreaChecker : MonoBehaviour
 {
     [SerializeField]
@@ -32,6 +33,7 @@ public class AreaChecker : MonoBehaviour
 
     private void Update()
     {
+       // Defeat player if the oxygen is emptied.
        if(_oxygenManager.GetOxygen() == 0.0f && _once ==false)
         {
             _once= true;
@@ -42,7 +44,7 @@ public class AreaChecker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Enter:" + other.tag);
+        // Show the win screen if the player reaches the goal.
         if(other.tag == "Goal")
         {
             SoundHandler.Instance.PlaySound(_winClip);
@@ -50,10 +52,12 @@ public class AreaChecker : MonoBehaviour
             _victoryCanvas.SetActive(true);
 
         }
+        // Start draining oxygen if the player enters the radius of an obstacle.
         else if (other.tag == "Obstacle")
         {
             
             _oxygenManager.SetIsDraining(true);
+            // Coughing is misspelled.
             StartCoroutine(CaughtingSound());
             _cameraSmokeEmiter.Emit(100);
             _cameraSmokeEmiter.Play();
@@ -62,7 +66,7 @@ public class AreaChecker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log("Exit:" + other.tag);
+        // Stop draining oxygen if the player exists the radius of an obstacle.
         if (other.tag == "Obstacle")
         {
             _oxygenManager.SetIsDraining(false);

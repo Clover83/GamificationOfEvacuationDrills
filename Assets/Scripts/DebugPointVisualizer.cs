@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Class to see where the points that was sent to the server correspond in the scene.
+// Spawns a DebugObject for each point in the data.
 public class DebugPointVisualizer : MonoBehaviour
 {
     [TextArea]

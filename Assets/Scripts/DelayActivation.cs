@@ -1,6 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// Does what it says on the tin. Was created to solve a bug where the restart system wouldn't work, but was unsuccessful in this task.
 
 [System.Serializable]
 public struct DelayedObject

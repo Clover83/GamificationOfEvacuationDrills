@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// Used in the position picker scene to save the position the user chose.
 
 public class PositionSaver : MonoBehaviour
 {

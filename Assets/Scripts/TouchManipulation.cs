@@ -1,15 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
+// This class enables classic touch controls for the position picker scene.
+// Uses the scene's main camera.
 // Inspiration from https://gist.github.com/ditzel/836bb36d7f70e2aec2dd87ebe1ede432
 
 public class TouchManipulation : MonoBehaviour
 {
+    [Tooltip("Minimum zoom size")]
     [SerializeField]
     private float _maxOrthographicSize;
+    [Tooltip("Maximum zoom size")]
     [SerializeField]
     private float _minOrthographicSize;
 
@@ -29,6 +30,7 @@ public class TouchManipulation : MonoBehaviour
         Vector3 delta1 = Vector3.zero;
         Vector3 delta2 = Vector3.zero;
 
+        // Drag
         if (Input.touchCount >= 1)
         {
             Touch touch = Input.GetTouch(0);

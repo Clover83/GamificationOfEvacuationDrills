@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// Responsible for moving the ar origin to the player's picked position on start.
 
 public class MoveObject : MonoBehaviour
 {
     [SerializeField]
     private Transform _target;
+    [Tooltip("Keep target's original height")]
     [SerializeField]
     private bool _keepOriginalHeight = true;
 
     public void PerformMove()
     {
-        Debug.Log("PerformMove(): pos: " + StartPositionData.position);
         if (_keepOriginalHeight)
         {
             Vector3 p = StartPositionData.position;

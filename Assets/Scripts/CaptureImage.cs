@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
+// A class so that buttons can tell the camera to save a single picture to a render texture.
 [RequireComponent(typeof(Camera))]
 public class CaptureImage : MonoBehaviour
 {

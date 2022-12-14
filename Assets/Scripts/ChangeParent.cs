@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
+
+// ParentData exists to make the code simpler, and to make it prettier in the inspector.
 [System.Serializable]
 [SerializeField]
 class ParentData

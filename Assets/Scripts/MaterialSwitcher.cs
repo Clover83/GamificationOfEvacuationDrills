@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
+// This system enables switching both material and layers for several objects.
+// The debug button which toggles the environment visibility uses this.
 
 [System.Serializable]
 public class MaterialSwitchData

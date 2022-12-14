@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 // Just a class to deserialize the creds.json file.
-// Could be made into a singleton, but I am too tired to do it properly right now.
+// Bigger explanation in readme.
 [System.Serializable]
 public class APIKeys
 {
@@ -13,11 +13,16 @@ public class APIKeys
     public string jsonBinAccess;
 
     // No file extension since Resources.Load does not need it.
+    // Relation is Assets/Resources/CREDS_PATH
     private const string CREDS_PATH = "creds";
 
     public static APIKeys LoadKeys()
     {
         TextAsset ta = Resources.Load<TextAsset>(CREDS_PATH);
+        if (ta == null || ta.text.Length == 0)
+        {
+            Debug.Log("Empty or non-existant creds.hson file. Did you forget to make one?");
+        }
         APIKeys keys = JsonUtility.FromJson<APIKeys>(ta.text);
         if (keys.googleMaps.Length == 0 || 
             keys.jsonBinMaster.Length == 0 ||
