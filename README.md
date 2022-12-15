@@ -10,6 +10,8 @@
 4. If you want access to the server data, you need to create a creds.json file (as described below).
 5. Build the project.
 
+#### Alternatively, transfer the prebuilt apk from the releases section to your phone.
+
 ### Creds.json
 
 API keys are sensitive information and should not be stored in a public GitHub repository. 
