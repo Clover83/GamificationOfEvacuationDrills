@@ -1,0 +1,13 @@
+Developed by:
+Ali Aryaei aliari-1@student.ltu.se
+Emily Sundberg sunwil-0@student.ltu.se
+Kit Sundström kitsun-1@student.ltu.se
+Lukas Aukstakalnis lukauk-1@student.ltu.se
+
+Unity Particle system-
+Link: https://opengameart.org/content/smoke-particle-assets
+By Unity
+
+Trash can model-
+Link: https://www.turbosquid.com/3d-models/free-modern-trash-3d-model/916153
+By luchvk
