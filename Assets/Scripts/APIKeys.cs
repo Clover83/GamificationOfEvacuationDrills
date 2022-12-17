@@ -4,7 +4,10 @@ using UnityEngine;
 
 
 // Just a class to deserialize the creds.json file.
-// Bigger explanation in readme.
+// To add new keys (or potentially any sensitive information)
+// add a new public field and mirror that name in the creds.json file.
+// Then add the corresponding lines in HasEmptyKeys().
+
 [System.Serializable]
 public class APIKeys
 {
@@ -16,6 +19,13 @@ public class APIKeys
     // Relation is Assets/Resources/CREDS_PATH
     private const string CREDS_PATH = "creds";
 
+    private bool HasEmptyKeys()
+    {
+        return googleMaps.Length == 0 ||
+            jsonBinMaster.Length == 0 ||
+            jsonBinAccess.Length == 0;
+    }
+
     public static APIKeys LoadKeys()
     {
         TextAsset ta = Resources.Load<TextAsset>(CREDS_PATH);
@@ -24,9 +34,7 @@ public class APIKeys
             Debug.Log("Empty or non-existant creds.hson file. Did you forget to make one?");
         }
         APIKeys keys = JsonUtility.FromJson<APIKeys>(ta.text);
-        if (keys.googleMaps.Length == 0 || 
-            keys.jsonBinMaster.Length == 0 ||
-            keys.jsonBinAccess.Length == 0)
+        if (keys.HasEmptyKeys())
         {
             Debug.Log("creds.json contains empty key(s). Did you forget to initialize it?");
         }
