@@ -32,4 +32,4 @@ The variables in creds.json should follow the naming of the fields in the APIKey
 
 
 ### Webserver
-See [the webserver's repository](https://github.com/Clover83/GEDServer) for setup instructions.
+See [the webserver's repository](https://github.com/Clover83/GEDServer) for setup instructions. You will need to implement your own code to send data to GEDServer, as that part wasn't completed in time.
